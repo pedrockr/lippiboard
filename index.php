@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
+	<title>Diario de Classe</title>
 
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<script src="js/jquery-3.4.1.min.js"></script>
@@ -18,7 +18,8 @@
 	</style>
 </head>
 <body>
-	<?php include_once ('conecta.php')?>
+	<?php require_once ('classes/CRUD_DiarioClasse.php');?>
+	<?php include_once ('conecta.php');?>
 
   	<div class="row"> 
   		<div class="container-fluid"> 
@@ -39,14 +40,13 @@
 			<br>
 			<h2>Diario de Classe</h2>
 
-			<form>
+			<form method="POST" action="classes/CRUD_DiarioClasse.php">
 				<div class="form-group row">
 			    	<label for="PlanoEnsino" class="col-sm-3 col-form-label">Professor</label>
 				    <div class="col-sm-9">
 				    	<select class="form-control" id="SelProf">
 				    		<option>Professor</option>
 				    		<?php 
-				    			//$conexao = new mysqli('localhost', 'root', '', 'projeto') or die(mysqli_error($mysqli));
 				    			$buscaProf = "Select * from professores";
 				    			$resultado = mysqli_query($con,$buscaProf);
 
@@ -79,7 +79,7 @@
 				<div class="form-group row">
 					<label for="Data" class="col-sm-3 col-form-label">Data</label>
 					<div class="col-sm-9">							
-						<input type="date" class="form-control" id="Data" placeholder="" value="<?php echo date('Y-m-d'); ?>">
+						<input type="date" class="form-control" id="Data" placeholder="" name="criado_em" value="<?php echo date('Y-m-d'); ?>">
 					</div>
 				</div>
 
@@ -87,7 +87,7 @@
 				<div class="form-group row">
 					<label for="Data" class="col-sm-3 col-form-label">Conteudo Abordado</label>
 					<div class="col-sm-9">
-						<textarea class="form-control"></textarea>
+						<textarea class="form-control" name="conteudoAbordado"></textarea>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -98,15 +98,15 @@
 
 					<div class="col-sm-7">
 				        <div class="form-check">
-				          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1">
+				          <input class="form-check-input" type="radio" name="status" id="gridRadios1" value="option1">
 				          <label class="form-check-label" for="gridRadios1">Completo</label>
 				        </div>
 				        <div class="form-check">
-				          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+				          <input class="form-check-input" type="radio" name="status" id="gridRadios2" value="option2">
 				          <label class="form-check-label" for="gridRadios2">Parcial</label>
 				        </div>
 				        <div class="form-check">
-				          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled checked="">
+				          <input class="form-check-input" type="radio" name="status" id="gridRadios3" value="option3" checked="">
 				          <label class="form-check-label" for="gridRadios3">Não aplicado</label>
 				      </div>
 				        
@@ -117,7 +117,7 @@
 
 			  	<div class="form-group row">
 				    <div class="col-sm-10">
-				      	<button type="submit" class="btn btn-primary">Salvar</button>
+				      	<button type="submit" name="Salvar" class="btn btn-primary">Salvar</button>
 				    </div>
 			  	</div>				  	
 			</form>
@@ -129,8 +129,8 @@
 				<div class="bground text-white card-header">
 			    Em Andamento
 			  	</div>			  	
-			  	<div class="card-body">				    
-				    <?php 
+			  	<div class="card-body" id="Pendentes">				    
+				    <!-- <?php 
 						//$conexao = new mysqli('localhost', 'root', '', 'projeto') or die(mysqli_error($mysqli));
 						$buscaStatus = "Select * from view_plano_aulas";
 						$resultado = mysqli_query($con,$buscaStatus);
@@ -141,7 +141,7 @@
 								<p> <?php echo $row['conteudo']?> </p>
 								<hr>
 							<?php endif ?>
-						<?php endwhile ?>
+						<?php endwhile ?> -->
 			  	</div>
 			  	
 			</div>
@@ -183,6 +183,23 @@
 				},
 				error: function(data){
 					$("#SelCont").html("erro");
+				},
+
+			});
+		})
+		$("#SelDisc").on("click", function(){
+			var idPLano = $("#SelDisc").val();
+
+			$.ajax({
+				url:'buscas/BuscPendentes.php',
+				type: 'POST',
+				data: {id:idPLano},
+
+				success: function(data){
+					$("#Pendentes").html(data);
+				},
+				error: function(data){
+					$("#Pendentes").html("erro");
 				},
 
 			});
