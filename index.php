@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
 
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap.css" rel="stylesheet">
 	<script src="js/jquery-3.4.1.min.js"></script>
 
 
@@ -33,7 +33,6 @@
   	<div class="container-fluid"> 
   		<div class="row flex-xl-nowrap"> 
   			<div class="col-2 bd-sidebar">
-  				MENU
   				<?php include('layouts/menu.php') ?>
 	  		</div>
 		<main class="col-8 bd-content">
@@ -122,20 +121,29 @@
 				    </div>
 			  	</div>				  	
 			</form>
-		</main>
+		</main>	
 
 		<div class="col-2">
 			<br>
 			<div class="card">
 				<div class="bground text-white card-header">
 			    Em Andamento
-			  	</div>
+			  	</div>			  	
 			  	<div class="card-body">				    
-				    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>				    
+				    <?php 
+						//$conexao = new mysqli('localhost', 'root', '', 'projeto') or die(mysqli_error($mysqli));
+						$buscaStatus = "Select * from view_plano_aulas";
+						$resultado = mysqli_query($con,$buscaStatus);
+					?>
+						<?php while($row = mysqli_fetch_assoc($resultado)):?>
+							<?php if($row['status'] == "Parcial"): ?>
+								<p> <?php echo $row['disciplina_nome']?> </p>
+								<p> <?php echo $row['conteudo']?> </p>
+								<hr>
+							<?php endif ?>
+						<?php endwhile ?>
 			  	</div>
-			  	<div class="card-body">				    
-				    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-			  	</div>
+			  	
 			</div>
 		</div>
 
