@@ -9013,12 +9013,12 @@ nav a{
 
 .link{
  background-color:#1f2b62;
- padding:20px;
+ padding:10px;
  font-family:"arial";
  font-size:12pt;
  transition:all .2s linear;
  color:#f9f9f9;
- border-bottom:2px solid #222;
+ border-bottom:0px solid #222;
  opacity:0px;
  margin-top:10px;
 }

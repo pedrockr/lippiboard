@@ -33,6 +33,8 @@ if(isset($_POST['Salvar'])){
         '$fk_diario_professor',
         '$fk_plano_diario'
     )");
+
+    header("location: /lippiboard/diarioClasse.php");
 }
 
 if (isset($_POST['Editar'])){
@@ -46,5 +48,7 @@ if (isset($_POST['Editar'])){
 		$fk_plano_diario = $_POST['FK_Plano'];
 
 		$mysqli->query("UPDATE diario_aulas SET	conteudo_diario='$conteudoDiario', status = '$statusDiario', 	diario_atualizado_em = '$diario_criado_em'	WHERE id_diario = $id");
+
+		header("location: /lippiboard/diarioClasse.php");
     	
     }
