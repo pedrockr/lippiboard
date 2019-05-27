@@ -49,6 +49,13 @@ while($row	= $resultado->fetch_assoc()):
 		<input type="hidden" name="FK_Prof"value="'.$row['professor_id'].'">
 		<input type="hidden" name="FK_Disc"value="'.$row['disciplina_id'].'">
 		<input type="hidden" name="FK_Plano"value="'.$row['id_plano'].'">
+		<div class="form-group row">
+		    <div class="col-sm-10">
+		    	<input type="hidden" name="id_diario" value="'.$row['id_diario'].'">
+		      	<button type="submit" name="Salvar" class="btn btn-primary">Salvar</button>
+		      	<button type="submit" name="Editar" class="btn btn-primary">Editar</button>
+		    </div>
+		</div>
 		';
 
 	}else if($row['status']== "Parcial"){
@@ -84,6 +91,13 @@ while($row	= $resultado->fetch_assoc()):
 		<input type="hidden" name="FK_Prof"value="'.$row['professor_id'].'">
 		<input type="hidden" name="FK_Disc"value="'.$row['disciplina_id'].'">
 		<input type="hidden" name="FK_Plano"value="'.$row['id_plano'].'">
+		<div class="form-group row">
+		    <div class="col-sm-10">
+		    	<input type="hidden" name="id_diario" value="'.$row['id_diario'].'">
+		      	<button type="submit" name="Salvar" class="btn btn-primary">Salvar</button>
+		      	<button type="submit" name="Editar" class="btn btn-primary">Editar</button>
+		    </div>
+		</div>
 		';
 
 	}else{
@@ -118,6 +132,12 @@ while($row	= $resultado->fetch_assoc()):
 		<input type="hidden" name="FK_Prof"value="'.$row['professor_id'].'">
 		<input type="hidden" name="FK_Disc"value="'.$row['disciplina_id'].'">
 		<input type="hidden" name="FK_Plano"value="'.$row['id_plano'].'">
+		<div class="form-group row">
+		    <div class="col-sm-10">
+		    	<input type="hidden" name="id_diario" value="'.$row['id_diario'].'">
+		      	<button type="submit" name="Salvar" class="btn btn-primary">Salvar</button>
+		    </div>
+		</div>
 		';
 	}
 

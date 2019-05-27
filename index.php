@@ -113,13 +113,12 @@
 			      </div>
 				</div>
 
-			</div> <!-- fim da troca -->
-
 			  	<div class="form-group row">
 				    <div class="col-sm-10">
 				      	<button type="submit" name="Salvar" class="btn btn-primary">Salvar</button>
 				    </div>
-			  	</div>				  	
+			  	</div>
+			</div> <!-- fim da troca -->				  	
 			</form>
 		</main>	
 
